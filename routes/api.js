@@ -4,7 +4,9 @@ const Workout = require("../models/workout");
 
 
 router.get("/api/workouts", function(req, res){
-    Workout.find().then(function(data){
+    Workout.find().then(function(err,data){
+        if(err)throw err;
+        
         res.json(data);
     })
 })
@@ -17,19 +19,25 @@ Workout.findByIdAndUpdate(
 id,
 {$push:{exercises:body}}
 
-).then(function(data){
+).then(function(err,data){
+    if(err)throw err;
+
     res.json(data)
 })
 })
 
 router.post("/api/workouts", function(req, res){
-    Workout.create({}).then(function(data){
+    Workout.create({}).then(function(err,data){
+        if(err) throw err;
+
         res.json(data);
     })
 })
 
 router.get('/api/workouts/range', function(req, res){
-    Workout.find().then(function(data){
+    Workout.find().then(function(err,data){
+        if(err) throw err;
+        
         res.json(data);
     })
 })
